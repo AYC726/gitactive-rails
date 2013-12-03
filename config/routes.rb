@@ -1,4 +1,7 @@
 GitactiveRails::Application.routes.draw do
+  
+  root 'commits#index'
+  
   resources :commits
 
   resources :repos
