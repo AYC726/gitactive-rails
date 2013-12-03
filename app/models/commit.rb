@@ -2,6 +2,8 @@ class Commit < ActiveRecord::Base
   belongs_to :user
   belongs_to :repo
 
+  scope :recent_commits, ->(num) { order("commit_time DESC").limit(num) }
+
   before_create :increment_user_count
 
   private
