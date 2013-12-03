@@ -2,7 +2,7 @@ class APICaller
 
   def self.client
     client = Octokit::Client.new :client_id => ENV['GITHUB_CLIENT_ID'], :client_secret => ENV['GITHUB_CLIENT_SECRET']
-    user = client.user 'clee681'
+    user = client.user ENV['GITHUB_USER_NAME']
     user.login
     client
   end
