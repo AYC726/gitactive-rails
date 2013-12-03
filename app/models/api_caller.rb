@@ -1,5 +1,5 @@
 class APICaller
-  @@client ||= Octokit::Client.new :client_id => ENV['GITHUB_CLIENT_ID'], :client_secret => ENV['GITHUB_CLIENT_SECRET']
+  @@client ||= Octokit::Client.new :access_token => ENV['GITHUB_ACCESS_TOKEN']
 
   def self.run(user)
     begin 
