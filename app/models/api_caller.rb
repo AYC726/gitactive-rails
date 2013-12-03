@@ -14,7 +14,7 @@ class APICaller
      end
 
      user.update(call_time: Time.now)
-     build_commits(new_push_events)
+     build_commits(new_push_events,user)
 
     rescue => e
       Rails.logger.error "Error grabbing events from user"
@@ -22,7 +22,7 @@ class APICaller
     end
   end
 
-  def self.build_commits(new_push_events)
+  def self.build_commits(new_push_events,user)
     new_push_events.each do |new_push_event|
       begin
         repo = Repo.find_or_create_by(name: new_push_event.attrs[:repo].attrs[:name])
