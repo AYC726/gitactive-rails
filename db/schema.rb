@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131203023530) do
+ActiveRecord::Schema.define(version: 20131203141130) do
 
   create_table "commits", force: true do |t|
     t.string   "comment"
@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 20131203023530) do
   create_table "users", force: true do |t|
     t.string   "name"
     t.string   "github_name"
-    t.datetime "scrape_time"
+    t.datetime "call_time"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
