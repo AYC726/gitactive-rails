@@ -3,10 +3,13 @@ namespace :github_api do
     
     puts "Retrieving all new push events for all users"
 
-    @users = User.all
+    9.times do 
+      @users = User.all
 
-    @users.each do |user|
-      APICaller.run(user)
+      @users.each do |user|
+        APICaller.run(user)
+      end
+      sleep 60
     end
     
   end
