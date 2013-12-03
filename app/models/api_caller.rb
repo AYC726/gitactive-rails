@@ -1,28 +1,31 @@
 class APICaller
+  @@client ||= Octokit::Client.new :login => ENV['USERNAME'], :password => ENV['PASSWORD']
 
-  attr_accessor :user, :results
+  def self.run(user)
+    result = @@client.user_public_events(user.github_name)
 
-  @@client = #TODO Some API Thing
+    new_push_events = result.select do |event|
+      if user.scrape_time.nil?
+        event.attrs[:type] == "PushEvent"
+      else
+        (event.attrs[:type] == "PushEvent") && (event[:created_at] > user.scrape_time)
+      end
+    end
 
-  def initialize(user)
-    @results = call_user(user)
+    user.update(scrape_time: Time.now)
+
+    new_push_events.each do |new_push_event|
+      repo = Repo.find_or_create_by(name: new_push_event.attrs[:repo].attrs[:name])
+      commit_time = new_push_event.attrs[:created_at]
+
+      new_push_event[:payload].attrs[:commits].each do |commit|
+        comment = commit.attrs[:message]
+        sha = commit.attrs[:sha]
+
+        user.commits.create(comment: comment, sha: sha, repo: repo, commit_time: commit_time)
+      end
+    end
   end
-
-  def call_user(user)
-    results = @@client.user_public_events user 
-
-    #filter their events by Time and type
-    #build a commit for each one
-
-  end
-
-  def build_commit
-  end
-
-  #Given a user
-  #Filter their 30 results
-  #For each qualifying result,
-  #  run a method which turns that hash
-  #  into a commit
 
 end
+

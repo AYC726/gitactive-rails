@@ -6,6 +6,6 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-%w(jnoconor cobus7 andersr irislee theevo ivanbrennan loganhasson tiffanypeon stephaniehoh ahimmelstoss danielchangNYC samtalks manu3569 glamouracademy rosiehoyem rayning0 mecampbellsoup AYC726 sarony emilyxxie polycarpou irmiller22 J-Scag scottluptowski TrevMcKendrick jamesjtong Clee681 davidbella richardsonjm gregeng samueldowens casunlight BandadaKM manleyhimself sonejah21). each do |user|
+%w(jnoconor cobus7 andersr irislee theevo ivanbrennan loganhasson tiffanypeon stephaniehoh ahimmelstoss danielchangNYC samtalks manu3569 glamouracademy rosiehoyem rayning0 mecampbellsoup AYC726 sarony emilyxxie polycarpou irmiller22 J-Scag scottluptowski TrevMcKendrick jamesjtong Clee681 davidbella richardsonjm gregeng samueldowens casunlight BandanaKM manleyhimself sonejah21).each do |user|
     User.create(:github_name => user)
   end
