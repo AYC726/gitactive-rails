@@ -1,5 +1,5 @@
 class APICaller
-  @@client ||= Octokit::Client.new :login => ENV['USERNAME'], :password => ENV['PASSWORD']
+  @@client ||= Octokit::Client.new :client_id => ENV['GITHUB_CLIENT_ID'], :client_secret => ENV['GITHUB_CLIENT_SECRET']
 
   def self.run(user)
     result = @@client.user_public_events(user.github_name)
