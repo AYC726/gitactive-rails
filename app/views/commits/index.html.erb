@@ -3,24 +3,33 @@
 </div>
 
 <div class="container">
-<div class="trophy-box">
-  <div class="trophy-header"><p>Current Points Leader</p></div>
-  <div class="trophy-wrapper">
-    <%= fa_icon "trophy 4x", :class => "icon-trophy" %>
-    <p class="top-scorer-name"><%= @leader.github_name %></p>
-    <p class="top-scorer-points"><%= pluralize(@leader.commit_count, "commit") %></p>   
+
+  <div class="commit-feed">
+    <% @commits.each do |commit| %>
+      <div class="commit-block">
+      <h1 class="username"><%= commit.user.github_name %> <span class="timestamp"><%= format_time(commit.commit_time) %></span></h1>
+      <p class="event-description"><%= "#{commit.comment} on #{commit.repo.name}" %></p>
+      </div>
+    <% end %>
   </div>
+
+  <div class="trophy-div">
+
+    <div class="trophy-box">
+      <div class="trophy-header"><p>Current Points Leader</p></div>
+      <div class="trophy-wrapper">
+        <%= fa_icon "trophy 4x", :class => "icon-trophy" %>
+        <p class="top-scorer-name"><%= @leader.github_name %></p>
+        <p class="top-scorer-points"><%= pluralize(@leader.commit_count, "commit") %></p>   
+      </div>
+    </div>
+
+  </div>
+
 </div>
 
-<% @commits.each do |commit| %>
-  <div class="commit-block">
-  <h1 class="username"><%= commit.user.github_name %> <span class="timestamp"><%= format_time(commit.commit_time) %></span></h1>
-  <p class="event-description"><%= "#{commit.comment} on #{commit.repo.name}" %></p>
-  </div>
-<% end %>
-
 <script>
-setInterval(function(){
-  location.reload();
-}, 30000);
+//setInterval(function(){
+//  location.reload();
+//}, 30000);
 </script>
