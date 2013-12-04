@@ -1,6 +1,6 @@
 module CommitsHelper
 
   def format_time(time)
-    time.localtime.strftime("%l:%M:%S").strip
+    time.in_time_zone('Eastern Time (US & Canada)').strftime("%l:%M:%S").strip
   end
 end
