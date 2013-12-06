@@ -1,4 +1,6 @@
 class Commit < ActiveRecord::Base
+  include Formatter::CommitFormatter
+  
   belongs_to :user
   belongs_to :repo
 
