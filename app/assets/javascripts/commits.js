@@ -1,7 +1,6 @@
-var app = angular.module('gitactive', ['gitactive.controllers']);
-var controllers = angular.module('gitactive.controllers', []);
+var app = angular.module('gitactive', []);
 
-controllers.controller('CommitCtrl', function($scope, $http, $interval) {
+app.controller('CommitCtrl', ['$scope', '$http', '$interval', function($scope, $http, $interval) {
   $scope.results = {};
 
   function grabResults() {
@@ -16,4 +15,4 @@ controllers.controller('CommitCtrl', function($scope, $http, $interval) {
 
   grabResults()
   $interval(grabResults, 30000);
-})
+}]);
