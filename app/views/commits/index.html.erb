@@ -1,5 +1,5 @@
 <div class="header">
-  <img src="/assets/flatiron.png" />
+  <%= image_tag('flatiron.png') %>
 </div>
 
 <div class="container" ng-controller="CommitCtrl">
@@ -8,6 +8,7 @@
       <div class="commit-block" ng-repeat="commit in results.commits">
       <h1 class="username">{{ commit.name }}<span class="timestamp">{{ commit.time }}</span></h1>
       <p class="event-description">{{ commit.comment }} on {{ commit.repo}} </p>
+      </div>
   </div>
 
   <div class="trophy-div">
