@@ -1,13 +1,12 @@
 class CommitsController < ApplicationController
 
   def index
+  end
+
+  def json
     @commits = Commit.recent_commits(3)
     @leader = User.commit_leader
-
-    respond_to do |format|
-      format.html
-      format.json { render :json => json_hash, :callback => params[:callback] }
-    end
+    render :json => json_hash
   end
 
   private
