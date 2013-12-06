@@ -2,15 +2,12 @@
   <img src="/assets/flatiron.png" />
 </div>
 
-<div class="container">
+<div class="container" ng-controller="CommitCtrl">
 
   <div class="commit-feed">
-    <% @commits.each do |commit| %>
-      <div class="commit-block">
-      <h1 class="username"><%= commit.user.github_name %> <span class="timestamp"><%= format_time(commit.commit_time) %></span></h1>
-      <p class="event-description"><%= "#{commit.comment} on #{commit.repo.name}" %></p>
-      </div>
-    <% end %>
+      <div class="commit-block" ng-repeat="commit in results.commits">
+      <h1 class="username">{{ commit.name }}<span class="timestamp">{{ commit.time }}</span></h1>
+      <p class="event-description">{{ commit.comment }} on {{ commit.repo}} </p>
   </div>
 
   <div class="trophy-div">
@@ -19,29 +16,11 @@
       <div class="trophy-header"><p>Current Points Leader</p></div>
       <div class="trophy-wrapper">
         <%= fa_icon "trophy 4x", :class => "icon-trophy" %>
-        <p class="top-scorer-name"><%= @leader.github_name %></p>
-        <p class="top-scorer-points"><%= pluralize(@leader.commit_count, "commit") %></p>   
+        <p class="top-scorer-name"> {{ results.leader.name }} </p>
+        <p class="top-scorer-points">{{ results.leader.commit_count }} commits</p>   
       </div>
     </div>
 
   </div>
 
 </div>
-
-<script>
-$(document).ready(function() {
-
-  function queryPage() {
-    $.ajax({
-      url: 'http://127.0.0.1:3000/commits.json',
-      type: 'GET',
-      success: function(data) {
-        console.log(data);
-      }
-    });
-  }
-
-  queryPage();
-  //setInterval(queryPage, 30000);
-});
-</script>

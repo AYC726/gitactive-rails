@@ -9,6 +9,7 @@ gem 'font-awesome-rails'
 
 gem 'octokit'
 gem 'dotenv-rails'
+gem 'angularjs-rails'
 
 group :doc do
   gem 'sdoc', require: false

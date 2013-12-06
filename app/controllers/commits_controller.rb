@@ -6,7 +6,7 @@ class CommitsController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.json { render :json => json_hash }
+      format.json { render :json => json_hash, :callback => params[:callback] }
     end
   end
 
