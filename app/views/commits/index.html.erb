@@ -29,7 +29,19 @@
 </div>
 
 <script>
-setInterval(function(){
-  location.reload();
-}, 30000);
+$(document).ready(function() {
+
+  function queryPage() {
+    $.ajax({
+      url: 'http://127.0.0.1:3000/commits.json',
+      type: 'GET',
+      success: function(data) {
+        console.log(data);
+      }
+    });
+  }
+
+  queryPage();
+  //setInterval(queryPage, 30000);
+});
 </script>
