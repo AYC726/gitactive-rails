@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131203190824) do
+ActiveRecord::Schema.define(version: 20131206225442) do
 
   create_table "commits", force: true do |t|
     t.string   "comment"
@@ -40,5 +40,7 @@ ActiveRecord::Schema.define(version: 20131203190824) do
     t.datetime "updated_at"
     t.integer  "commit_count"
   end
+
+  add_index "users", ["commit_count"], name: "index_users_on_commit_count"
 
 end
